@@ -8,6 +8,7 @@ def generate_random_mac():
     return ':'.join(map(lambda x: "%02x" % x, mac))
 new_mac = generate_random_mac()
 interface = "eth0"
+subprocess.call("sudo su", shell=True)
 subprocess.call(f"ifconfig {interface} down", shell=True)
 subprocess.call(f"ifconfig {interface} hw ether {new_mac}", shell=True)
 subprocess.call(f"ifconfig {interface} up", shell=True)
